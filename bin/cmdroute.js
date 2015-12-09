@@ -54,7 +54,14 @@ function exec(argv) {
 	}
 
 	if (command.persist !== true) {
-		process.exit(0);
+		if (command.returnsPromise) {
+			result.then(function() {
+				process.exit(0);
+			});
+		}
+		else {
+			process.exit(0);
+		}
 	}
 }
 
